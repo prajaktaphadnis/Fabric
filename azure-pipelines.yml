@@ -1,0 +1,44 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+parameters:
+- name: terraformOperation
+  displayName: Terraform operation to perform
+  type: string
+  default: plan
+  values:
+  - validate
+  - plan
+  - apply
+
+- name: Pattern
+  type: string
+  default: none
+  values:
+  - none
+  - capacity
+  - network
+  - vpn/dev
+  - vpn/prd
+  - vpn-connection/dev
+  - vpn-connection/prd
+  - compute/dev
+  - compute/prd
+  - paas
+
+steps:
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
+
+- script: |
+    echo Add other tasks to build, test, and deploy your project.
+    echo See https://aka.ms/yaml
+  displayName: 'Run a multi-line script'

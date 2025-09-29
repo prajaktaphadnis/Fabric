@@ -129,5 +129,5 @@ resource "azurerm_private_dns_zone_virtual_network_link" "privatednsnetwork" {
       name                  = "landp-dev-pdnslnk-vnet01"
       resource_group_name   = azurerm_resource_group.example_rg.name
       private_dns_zone_name = azurerm_private_dns_zone.privatedns.name
-      virtual_network_id    = "landp-dev-fabric-vnet01"
+      virtual_network_id    = "/subscriptions/25877487-c39d-46b8-9e59-fd4688c0d4c2/resourceGroups/landp-rg-fabric-dev/providers/Microsoft.Network/virtualNetworks/landp-dev-fabric-vnet01"
     }

@@ -42,3 +42,30 @@ steps:
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
+
+stages:
+- stage: 'ValidateTerraform'
+  displayName: 'Terraform - Validate'
+  condition: eq('${{parameters.terraformOperation}}' , 'validate')
+  jobs:
+    - job: 'TerraformJobs'
+      displayName: 'Terraform Validate'
+      continueOnError: false
+      steps:
+
+        - task: TerraformInstaller@1
+          displayName: Install terraform
+          inputs:
+            terraformVersion: 'latest'
+
+        - task: TerraformTaskV4@4
+          displayName: 'Terraform init'
+          inputs:
+            command: 'init'
+            provider: 'azurerm'
+
+        - task: TerraformTaskV4@4
+          displayName: Terraform validate
+          inputs:
+            command: 'validate'
+            workingDirectory: '$(System.DefaultWorkingDirectory)/patterns/${{parameters.Pattern}}'

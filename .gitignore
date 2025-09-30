@@ -1,0 +1,8 @@
+# Terraform-specific files and directories to ignore
+
+# Local Terraform directories (provider binaries, external module source code)
+**/.terraform/
+
+# Terraform state files and backups
+*.tfstate
+*.tfstate.*
